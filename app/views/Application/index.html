@@ -2,3 +2,7 @@
 #{set title:'Home' /}
 
 <h1>Hello</h1>
+
+#{list items:users, as:'user'}
+	${user.login} <br/>
+#{/list}

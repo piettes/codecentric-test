@@ -6,6 +6,9 @@
 	
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:\Users\piettes\info\play-1.4.2\framework\play-1.4.2.jar" sourcepath="C:/users/piettes/info/play-1.4.2/framework/src" />
+	<classpathentry kind="lib" path="C:\Users\piettes\info\code-centric\lib\byte-buddy-1.3.16.jar"/>
+	<classpathentry kind="lib" path="C:\Users\piettes\info\code-centric\lib\mockito-core-2.0.52-beta.jar" sourcepath="C:\Users\piettes\.ivy2\cache\org.mockito\mockito-core\sources\mockito-core-2.0.52-beta-sources.jar"/>
+	<classpathentry kind="lib" path="C:\Users\piettes\info\code-centric\lib\objenesis-2.1.jar"/>
 	<classpathentry kind="lib" path="C:\Users\piettes\info\play-1.4.2\modules\docviewer\lib\play-docviewer.jar"/>
 	<classpathentry kind="lib" path="C:\Users\piettes\info\play-1.4.2\framework\lib\activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:\Users\piettes\info\play-1.4.2\framework\lib\antlr-2.7.7.jar"/>
