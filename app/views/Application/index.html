@@ -1,8 +1,18 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<h1>Hello</h1>
 
-#{list items:users, as:'user'}
-	${user.login} <br/>
+%{currentName = ''}%
+#{list items:stats, as:'line'}
+ 
+  #{if currentName == line[0] }
+    ${line[1]} : ${line[2]}  <br/>
+  #{/if}
+  #{else}
+    <br/>
+    %{currentName = line[0]}%
+    User ${line[0]} <br/>
+    ${line[1]} : ${line[2]} <br/>
+  #{/else}
+ 
 #{/list}

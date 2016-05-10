@@ -20,14 +20,27 @@ import models.*;
 
 public class Application extends Controller {
 
-	public static void index() {
-		List<GitUser> users = GitUser.findAll();
-		render(users);
-	}
+  /**
+   * Entry point of the app. Just get the user statistics and render the index
+   */
+  public static void index() {
+    List<Object[]> stats = GithubUser.getUserStatistics();
+    render(stats);
+  }
 
-	public static void init() {
-		new GithubUserRetriever(new WebServiceWrapper(), "https://api.github.com").getUsers("codecentric");
-		index();
-	}
+  /**
+   * To initialize the application. Get all users from organization codecentric on Github
+   */
+  public static void init() {
+    // The Github API is limited to 50 call per hour for unauth request.
+    String clientID = "a1b4f53dc80d2a8b25d0";
+    String clientSecret = "f897ef476d9cd914074cce1adc43134adedf8ccf";
+    
+    GithubUserRetriever userRetriever = new GithubUserRetriever(new WebServiceWrapper(), "https://api.github.com", clientID, clientSecret);
+    
+    userRetriever.getUsersWithRepos("codecentric");
+    // redirect to index
+    index();
+  }
 
 }
