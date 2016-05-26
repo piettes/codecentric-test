@@ -21,7 +21,8 @@ import models.*;
 public class Application extends Controller {
 
   /**
-   * Entry point of the app. Just get the user statistics and render the index
+   * Entry point of the app. Just get the user statistics and render the index.
+   * If a filter is provided, the statistics are filtered by language
    */
   public static void index(String filter) {
     List<Object[]> stats;
@@ -30,6 +31,7 @@ public class Application extends Controller {
     } else {
       stats = GithubUser.getUserStatisticsFiltered(filter);
     }
+    // to create a list of language to filter
     List<String> langs = Repo.getAvailableLanguages();
     render(stats, langs);
   }
