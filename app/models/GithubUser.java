@@ -38,5 +38,19 @@ public class GithubUser extends Model {
         .getResultList();
     return lines;
   }
+  
+  /**
+   * Get the user statistics filtered by languages
+   * @param lang
+   * @return
+   */
+  public static List<Object[]> getUserStatisticsFiltered(String lang) {
+    List<Object[]> lines = JPA.em()
+        .createNativeQuery(
+            "SELECT GithubUser.login, Repo.language, COUNT(*) FROM GithubUser JOIN Repo on Repo.owner_id = GithubUser.id WHERE Repo.language LIKE :lang GROUP BY language, login ORDER BY COUNT(*) desc")
+        .setParameter("lang", lang)
+        .getResultList();
+    return lines;
+  }
 
 }

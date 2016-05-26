@@ -23,24 +23,31 @@ public class Application extends Controller {
   /**
    * Entry point of the app. Just get the user statistics and render the index
    */
-  public static void index() {
-    List<Object[]> stats = GithubUser.getUserStatistics();
-    render(stats);
+  public static void index(String filter) {
+    List<Object[]> stats;
+    if (filter == null) {
+      stats = GithubUser.getUserStatistics();
+    } else {
+      stats = GithubUser.getUserStatisticsFiltered(filter);
+    }
+    List<String> langs = Repo.getAvailableLanguages();
+    render(stats, langs);
   }
 
   /**
-   * To initialize the application. Get all users from organization codecentric on Github
+   * To initialize the application. Get all users from organization codecentric
+   * on Github
    */
   public static void init() {
     // The Github API is limited to 50 call per hour for unauth request.
     String clientID = "a1b4f53dc80d2a8b25d0";
     String clientSecret = "f897ef476d9cd914074cce1adc43134adedf8ccf";
-    
+
     GithubUserRetriever userRetriever = new GithubUserRetriever(new WebServiceWrapper(), "https://api.github.com", clientID, clientSecret);
-    
+
     userRetriever.getUsersWithRepos("codecentric");
     // redirect to index
-    index();
+    index(null);
   }
 
 }

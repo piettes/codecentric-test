@@ -1,6 +1,18 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
+<form method="get" action="/">
+	<label>Filter by language : </label>
+	<select name="filter">
+		#{list items:langs, as:'lang'}
+			<option value="${lang}">${lang}</option>
+		#{/list}	
+	</select>
+	<button type="submit" >Ok</button>
+</form>
+<form method="get" action="/">
+	<button type="submit" >No filter</button>
+</form>
 
 %{currentName = ''}%
 #{list items:stats, as:'line'}

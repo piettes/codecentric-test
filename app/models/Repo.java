@@ -1,8 +1,11 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
 /**
@@ -24,5 +27,13 @@ public class Repo extends Model {
     this.name = name;
     this.language = language;
     this.owner = owner;
+  }
+  
+  public static List<String> getAvailableLanguages() {
+    List<String> langs = JPA.em()
+        .createNativeQuery(
+            "SELECT DISTINCT Repo.language FROM Repo")
+        .getResultList();
+    return langs;
   }
 }
